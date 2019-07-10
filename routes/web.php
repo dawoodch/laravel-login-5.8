@@ -22,10 +22,3 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::get('/test', function() {
-    $admin = User::where('name' , 'Admin')->first();
-    $role = Role::where('name' , 'admin')->first();
-    echo $admin->roles()->id;
-    
-});
