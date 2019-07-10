@@ -1,3 +1,6 @@
+##<h1> Youtube link for tutorials </h1>
+##https://www.youtube.com/playlist?list=PLxFwlLOncxFJBjuZEHqaZrbbj83IRQkiz
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
