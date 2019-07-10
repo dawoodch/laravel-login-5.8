@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use App\User;
 
 class AccessAdmin
 {
@@ -16,7 +17,6 @@ class AccessAdmin
      */
     public function handle($request, Closure $next)
     {
-        // Auth::user()->hasAnyRole('admin');
         if(Auth::user()->hasAnyRole('admin')){
             return $next($request);
         }
