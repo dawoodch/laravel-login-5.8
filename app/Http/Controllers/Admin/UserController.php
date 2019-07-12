@@ -29,7 +29,7 @@ class UserController extends Controller
     public function edit($id)
     {
         if(Auth::user()->id == $id){
-            return redirect()->route('admin.users.index');
+            return redirect()->route('admin.users.index')->with('warning', 'You can not edit yourself');
         }
         return view('admin.users.edit', [
             'user' => User::find($id),
@@ -47,11 +47,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         if(Auth::user()->id == $id){
-            return redirect()->route('admin.users.index');
+            return redirect()->route('admin.users.index')->with('warning', 'You can not update yourself');
         }
         $user = User::find($id);
         $user->roles()->sync($request->roles);
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', 'User has been updated successfully');
     }
 
     /**
@@ -62,6 +62,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Auth::user()->id == $id){
+            return redirect()->route('admin.users.index')->with('warning', 'You can not delete yourself');
+        }
+        User::destroy($id);
+        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
     }
 }
