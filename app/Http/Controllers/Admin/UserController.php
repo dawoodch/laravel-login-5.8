@@ -65,7 +65,13 @@ class UserController extends Controller
         if(Auth::user()->id == $id){
             return redirect()->route('admin.users.index')->with('warning', 'You can not delete yourself');
         }
-        User::destroy($id);
-        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
+        $user = User::find($id);
+        if($user){
+            $user->roles()->detach();
+            $user->delete();
+            return redirect()->route('admin.users.index')->with('success', 'User had been deleted successfully');
+        }
+
+        return redirect()->route('admin.users.index')->with('warning', 'User doesn\'t exist');
     }
 }
