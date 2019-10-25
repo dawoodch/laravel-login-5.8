@@ -16,7 +16,7 @@ class BladeExtraServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 
     /**
@@ -24,6 +24,7 @@ class BladeExtraServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
     public function boot()
     {
         Blade::if('hasrole' , function ($expression){
